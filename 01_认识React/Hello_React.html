@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <!-- 生产环境中不建议使用 -->
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="example"></div>
+</body>
+<script type="text/babel"> //声明：告诉babel.js解析里面的jsx的代码
+// 1.创建虚拟DOM元素对象
+var vDom = <h1>Hello, React!</h1>
+
+// 2.将虚拟DON渲染到页面真实DOM容器中
+ReactDOM.render(
+	vDom,
+	document.getElementById('example')
+);
+</script>
+</html>
