@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <!-- 生产环境中不建议使用 -->
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.0/prop-types.js"></script>
+
+</head>
+<body>
+  <div id="app">
+    
+  </div>
+</body>
+</html>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props)
+      this.state = {
+        todos: ["chifan","shuijiao",'dadoudou']
+      }
+      this.add = this.add.bind(this)
+    }
+
+    add(todo){
+      const {todos} = this.state
+      todos.unshift(todo)
+      this.setState({todos})
+    }
+
+    render(){
+      const {todos} = this.state
+      return (
+        <div>
+          <h1>Simple todo list</h1>
+          <Add count={todos.length} add={this.add}/>
+          <List todos={todos}/>
+        </div>
+      )
+    }
+  }
+
+
+
+  class Add extends React.Component{
+    constructor(props){
+      super(props)
+      this.add = this.add.bind(this)
+    }
+
+    add(){
+      const todo = this.todoInput.value.trim()
+      if(!todo){
+        return 
+      }
+      this.props.add(todo)
+
+      this.todoInput.value = ""
+    }
+
+    render(){
+      return (
+        <div>
+          <input type="text" ref={input=>this.todoInput=input}/>&nbsp;
+          <button onClick={this.add}>添加{this.props.count+1}</button>
+        </div>
+      )
+    }
+  }
+
+  Add.propTypes = {
+    count: PropTypes.number.isRequired,
+    add: PropTypes.func.isRequired
+  }
+
+  class List extends React.Component{
+    render(){
+      return (
+        <ul>
+          {
+            this.props.todos.map((todo,index)=><li key={index}>{todo}</li>)
+          }
+        </ul>
+      )
+    }
+  }
+
+  List.propTypes = {
+      todos: PropTypes.array.isRequired
+    }
+
+  ReactDOM.render(<App/>,document.getElementById("app"))
+</script>

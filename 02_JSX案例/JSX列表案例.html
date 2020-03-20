@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<!-- 生产环境中不建议使用 -->
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+<body>
+  <div id="app"></div>
+  
+</body>
+ <script type="text/babel">
+ /*
+ w问题：如何将一个数据的数组转换为一个标签的数组？
+  使用数组的map()
+ */
+  const names = ['jQuery','zepto','angular','react','vue']
+  // 1.创建虚拟DOM
+  const vDom = (<ul>
+              {names.map((name,index) => <li key={index}>{name}</li>)}
+              </ul>)
+
+  // 2.渲染虚拟DOM
+  ReactDOM.render(vDom,document.getElementById('app'))
+
+</script>
+</html>
