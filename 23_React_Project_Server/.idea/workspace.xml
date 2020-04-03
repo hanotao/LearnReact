@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d5a08648-0bb1-4b45-985a-604a0cf392c6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.less" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/components/logo/logo.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/login/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/login/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/main/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/main/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/register/register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/src/containers/register/register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22_React_Project/react_app/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../22_React_Project/react_app/webpack.config.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1ZsxF6X578a9rUPZzKtMENLBQTH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/react_app_server" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5a08648-0bb1-4b45-985a-604a0cf392c6" name="Default Changelist" comment="" />
+      <created>1585641495418</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585641495418</updated>
+      <workItem from="1585641496552" duration="2004000" />
+      <workItem from="1585717556506" duration="1982000" />
+      <workItem from="1585719853698" duration="1360000" />
+      <workItem from="1585790484821" duration="21000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
