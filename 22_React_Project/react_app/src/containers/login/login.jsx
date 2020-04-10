@@ -2,6 +2,11 @@
 用户登陆的路由组件
 */
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
+import {login} from '../../redux/actions'
+
 import {
   NavBar,
   WingBlank,
@@ -10,8 +15,10 @@ import {
   WhiteSpace,
   Button
 } from 'antd-mobile'
+
+
 import Logo from '../../components/logo/logo'
-export default class Login extends Component {
+class Login extends Component {
   state = {
     username: '',
     password: '',
@@ -26,15 +33,22 @@ export default class Login extends Component {
   }
   // 注册
   login = () => {
-    console.log(this.state)
+    this.props.login(this.state)
   }
   render() {
+
+    const {msg,redirectTo} = this.props.user
+    if(redirectTo){
+      return <Redirect to={redirectTo}></Redirect>
+    }
+
     return (
       <div>
         <NavBar>硅谷直聘</NavBar>
         <Logo />
         <WingBlank>
           <List>
+          {msg?<div className="error-msg">{msg}</div>:null}
             <InputItem
               placeholder=' 输入用户名'
               onChange={val => this.handleChange('username', val)}
@@ -60,3 +74,8 @@ export default class Login extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({user: state.user}),
+  {login},
+)(Login)

@@ -13,7 +13,7 @@
           <option name="sshTunnelingConfiguration">
             <SshTunnelingConfiguration />
           </option>
-          <option name="userDatabase" value="gzhipin_test2" />
+          <option name="userDatabase" value="gzhipin" />
         </ServerConfiguration>
       </list>
     </option>
