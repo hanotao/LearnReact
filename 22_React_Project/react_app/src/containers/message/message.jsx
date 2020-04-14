@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-class Boss extends Component {
+class Message extends Component {
   render() {
     return (
       <div>
-        Boss
+        Message
       </div>
     )
   }
@@ -14,4 +14,4 @@ class Boss extends Component {
 export default connect(
   state => ({}),
   {}
-)(Boss)
+)(Message)

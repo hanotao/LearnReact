@@ -3,7 +3,8 @@ var router = express.Router();
 const md5 = require('blueimp-md5')
 
 const UserModel = require('../db/models').UserModel;
-const filter = {password:0}
+//过滤
+const filter = {password:0};
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -57,6 +58,47 @@ router.post('/login',function (req,res) {
       res.send({code: 1,msg: '用户名或者密码不正确'})
     }
   })
+});
+
+
+router.post('/update',function (req,res) {
+
+  //从请求得到userid
+  const userid = req.cookies.userid;
+  if (!userid){
+    return res.send({code: 1,msg: '请先登录'})
+  }
+
+  //得到提交的用户数据
+  const user = req.body;
+  UserModel.findByIdAndUpdate({_id:userid},user,function (error,oldUser) {
+    if(!oldUser){
+      //  通知浏览器删除userid
+      res.clearCookie("userid");
+      //  返回一个提示信息
+      res.send({code: 1,msg: '请先登录'})
+    }else{
+      //准备一个返回的user对象
+      const {id,username,type} = oldUser;
+      const data = Object.assign(user,{id,username,type});
+      res.send({code: 0,data: data})
+    }
+  })
+});
+
+
+//获取用户信息的路由,根据cookie中的userid
+router.get('/user',function (req,res) {
+
+  const userid = req.cookies.userid;
+  //如果不存在，直接返回一个提示信息
+  if(!userid){
+    return res.send({code: 1,msg: '请先登录'})
+  }
+  //根据userid 查询对应的user
+  UserModel.findOne({_id:userid},filter,function(error,user){
+    res.send({code: 0,data: user})
+    })
 });
 
 module.exports = router;
