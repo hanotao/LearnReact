@@ -1,17 +1,25 @@
-import React, { Component } from 'react'
+/*
+大神主界面路由容器组件
+ */
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getUserList} from '../../redux/actions'
+
+import UserList from '../../components/user-list/user-list'
 
 class Staff extends Component {
-  render() {
+  componentDidMount () {
+    // 获取获取userList
+    this.props.getUserList('laoban')
+  }
+  render () {
     return (
-      <div>
-        Staff
-      </div>
+      <UserList userList={this.props.userList}></UserList>
     )
   }
 }
 
 export default connect(
-  state => ({}),
-  {}
+  state => ({userList: state.userList}),
+  {getUserList}
 )(Staff)

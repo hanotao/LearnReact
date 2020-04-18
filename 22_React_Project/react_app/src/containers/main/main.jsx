@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import {Switch,Route,Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Cookies from 'js-cookie' //可以get() set() remove() 
+import {NavBar} from 'antd-mobile'
 
+import NavFooter from "../../components/nav-footer/nav-footer"
 import {getUser} from '../../redux/actions'
 import {getRedirectTo} from '../../utils'
 import BossInfo from '../boss-info/boss-info'
@@ -10,16 +12,19 @@ import StaffInfo from '../staff-info/staff-info'
 import Boss from '../boss/boss'
 import Staff from '../staff/staff'
 import Message from '../message/message'
+import Chat from '../chat/chat'
 import Personal from '../personal/personal'
-import NotFound from '../../components/404/404'
-
+import NotFound from '../../components/notfound/notfound'
+import './main.css'
 class Main extends Component {
 
 
-  navList = [ { path: '/laoban', component: Laoban, title: '大神列表', icon: 'dashen', text: '大神', },
-              { path: '/dashen', component: Dashen, title: '老板列表', icon: 'laoban', text: '老板', },
-              { path: '/message', component: Message, title: '消息列表', icon: 'message', text: '消息'}, 
-              { path: '/personal', component: Personal, title: '用户中心', icon: 'personal', text: '个人', } ]
+  navList = [
+            { path: '/boss', component: Boss, title: '大神列表', icon: 'dashen', text: '大神'},
+            { path: '/staff', component: Staff, title: '老板列表', icon: 'laoban', text: '老板'},
+            { path: '/message', component: Message, title: '消息列表', icon: 'message', text: '消息'}, 
+            { path: '/personal', component: Personal, title: '用户中心', icon: 'personal', text: '个人'} 
+          ]
 
 
   componentDidMount(){
@@ -53,17 +58,32 @@ class Main extends Component {
       }
     }
 
+    const {navList} = this;
+    const path = this.props.location.pathname;
+    const currentNav = navList.find(nav => nav.path===path)
+
+    if(currentNav){
+      if(user.type==='laoban'){
+        //隐藏staff数组
+        navList[1].hide = true
+      }else{
+        navList[0].hide = true
+      }
+    }
+
     return (
       <div>
+        {currentNav ? <NavBar className='sticky-header'>{currentNav.title}</NavBar>: null}
         <Switch>
+          {
+            navList.map(nav => <Route path={nav.path} component={nav.component} key={nav.path}/>)
+          }
           <Route path='/bossinfo' component={BossInfo}></Route>
           <Route path="/staffinfo" component={StaffInfo}></Route>
-          <Route path="/boss" component={Boss}></Route>
-          <Route path="/staff" component={Staff}></Route>
-          <Route path="/message" component={Message}></Route>
-          <Route path="/personal" component={Personal}></Route>
-          <Route path="/notfond" component={NotFound}></Route>
+          <Route path="/chat/:userid" component={Chat}></Route>
+          <Route component={NotFound}></Route>
         </Switch>
+        {currentNav? <NavFooter navList = {navList}/>: null}
       </div>
     )
   }

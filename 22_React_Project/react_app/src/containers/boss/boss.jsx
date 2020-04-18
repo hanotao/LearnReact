@@ -1,17 +1,25 @@
-import React, { Component } from 'react'
+/*
+老板主界面路由容器组件
+ */
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getUserList} from '../../redux/actions'
+
+import UserList from '../../components/user-list/user-list'
 
 class Boss extends Component {
-  render() {
+  componentDidMount () {
+    // 获取获取userList
+    this.props.getUserList('dashen')
+  }
+  render () {
     return (
-      <div>
-        Boss
-      </div>
+      <UserList userList={this.props.userList}/>
     )
   }
 }
 
 export default connect(
-  state => ({}),
-  {}
+  state => ({userList: state.userList}),
+  {getUserList}
 )(Boss)

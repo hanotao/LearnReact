@@ -101,4 +101,59 @@ router.get('/user',function (req,res) {
     })
 });
 
+//获取用户列表，根据类型
+// '/userlist:type'  -->param
+router.get('/userlist',function (req,res) {
+  //获取请求的参数
+  const {type} = req.query;
+  UserModel.find({type},filter,function (err,users) {
+    res.send({code: 0,data: users})
+  })
+});
+
+
+//获取当前用户的所有相关聊天信息
+router.get('/msglist',function (req,res) {
+  //获取 cookid中的userid
+  const userid = req.cookies.userid;
+  //得到所有的user文档数组
+  UserModel.find(function (err,userDocs) {
+    //用对象存储所有的user信息，key为user的_id,val为name和header组成的user对象
+    // const users = {};
+    // userDocs.forEach(doc => {
+    //   users[doc._id] = {username: doc.username,header: doc.header}
+    // })
+    const users = userDocs.reduce((users,user) => {
+      users[user._id] = {username: user.username,header: user.header}
+      return users
+    },{});
+    /*
+    查询userid相关的所有聊天信息
+      参数1:查询条件
+      参数2:过滤条件
+      参数3: 回调函数
+    */
+    ChatModel.find({'$or':[{from: userid},{to: userid}]},filter,function (err,chatMsgs) {
+      res.send({code: 0,data: {users,chatMsgs}})
+    })
+  });
+
+  router.post('/readmsg',function (req,res) {
+    const from = req.body.from;
+    const to = req.cookies.userid
+    /*
+    更新数据库中的chat数据
+    参数1：查询条件
+    参数2：更新为指定的数据对象
+    参数3：是否1次更新多条，默认只更新一条
+    参数 4：更新完成的回调函数
+   */
+    ChatModel.update({from,to,read: false},{read: true},{multi: true},function (err,doc) {
+      res.send({code: 0,data: doc.noModified})
+    })
+  })
+
+
+});
+
 module.exports = router;
