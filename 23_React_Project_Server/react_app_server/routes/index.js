@@ -3,6 +3,7 @@ var router = express.Router();
 const md5 = require('blueimp-md5')
 
 const UserModel = require('../db/models').UserModel;
+const ChatModel = require('../db/models').ChatModel;
 //过滤
 const filter = {password:0};
 /* GET home page. */
@@ -138,9 +139,10 @@ router.get('/msglist',function (req,res) {
     })
   });
 
+
   router.post('/readmsg',function (req,res) {
     const from = req.body.from;
-    const to = req.cookies.userid
+    const to = req.cookies.userid;
     /*
     更新数据库中的chat数据
     参数1：查询条件

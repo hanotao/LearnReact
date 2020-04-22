@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
 
 const UserModel = mongoose.model("user",userSchema);
 
-exports.UserModel = UserModel;
+
 
 const chartScheme = mongoose.Schema({
     from: {type: String,required: true},
@@ -38,6 +38,7 @@ const chartScheme = mongoose.Schema({
 });
 
 const ChatModel = mongoose.model("chat",chartScheme);
+exports.UserModel = UserModel;
 exports.ChatModel = ChatModel;
 
 

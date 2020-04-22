@@ -11,7 +11,7 @@ import Main from "./containers/main/main"
 import './assets/css/index.css'
 import '../src/containers/chat/chat.css'
 
-import './test/socketio_test'
+// import './test/socketio_test'
 
 
 ReactDOM.render((
