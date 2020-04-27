@@ -137,25 +137,30 @@ router.get('/msglist',function (req,res) {
     ChatModel.find({'$or':[{from: userid},{to: userid}]},filter,function (err,chatMsgs) {
       res.send({code: 0,data: {users,chatMsgs}})
     })
-  });
-
-
-  router.post('/readmsg',function (req,res) {
-    const from = req.body.from;
-    const to = req.cookies.userid;
-    /*
-    更新数据库中的chat数据
-    参数1：查询条件
-    参数2：更新为指定的数据对象
-    参数3：是否1次更新多条，默认只更新一条
-    参数 4：更新完成的回调函数
-   */
-    ChatModel.update({from,to,read: false},{read: true},{multi: true},function (err,doc) {
-      res.send({code: 0,data: doc.noModified})
-    })
   })
-
-
 });
+
+/*
+修改指定消息为已读
+ */
+router.post('/readmsg', function (req, res) {
+  // 得到请求中的from和to
+  const from = req.body.from;
+  const to = req.cookies.userid;
+  /*
+  更新数据库中的chat数据
+  参数1: 查询条件
+  参数2: 更新为指定的数据对象
+  参数3: 是否1次更新多条, 默认只更新一条
+  参数4: 更新完成的回调函数
+   */
+  ChatModel.updateMany({from, to, read: false}, {read: true}, {multi: true}, function (err, doc) {
+    console.log('/readmsg', doc);
+    res.send({code: 0, data: doc.nModified}) // 更新的数量
+  })
+});
+
+
+
 
 module.exports = router;

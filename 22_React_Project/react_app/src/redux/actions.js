@@ -22,7 +22,8 @@ import {
   RESET_USER,
   RECEIVE_USER_LIST,
   RECEIVE_MSG_LIST,
-  RECEIVE_MSG
+  RECEIVE_MSG,
+  MSG_READ
 } from './action-types'
 
 /**
@@ -75,7 +76,8 @@ const receiveUserList = (userlist) => ({type: RECEIVE_USER_LIST,data: userlist})
 const receiveMsgList = ({users,chatMsgs,userid}) => ({type:RECEIVE_MSG_LIST,data: {users,chatMsgs,userid}})
 //接收一个消息的同步action
 const receiveMsg = (chatMsg,userid) => ({type:RECEIVE_MSG,data: {chatMsg,userid}})
-
+//读取了某个聊天消息的同步action
+const msgRead = (count,from,to) => ({type:MSG_READ,data:{count,from,to}})
 
 
 
@@ -163,7 +165,7 @@ export const getUser = () => {
     const response = await reqUser()
     const result = response.data;
     if(result.code===0){
-      console.log(result)
+      // console.log(result)
       getMsgList(dispatch,result.data._id)
       //成功
       dispatch(receiveUser(result.data));
@@ -193,5 +195,21 @@ export const sendMsg = ({from,to,content}) => {
     console.log("客户端发送信息",{from,to,content})
     
     io.socket.emit("sendMsg",{from,to,content})
+  }
+}
+
+//读取消息的异步action
+export const readMsg = (from,to) =>{
+  return async dispatch => {
+    //发送请求
+    console.log(from)
+    const response = await reqReadMsg(from)
+    console.log(response)
+    const result = response.data;
+    if(result.code===0){
+      //分发一个同步action
+      const count = result.data;
+      dispatch(msgRead({count,from,to}))
+    } 
   }
 }
